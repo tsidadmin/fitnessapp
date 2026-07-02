@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(node -v)",
+      "PowerShell(npm -v)",
+      "PowerShell($paths = @\\(\"$env:ProgramFiles\\\\nodejs\\\\node.exe\",\"${env:ProgramFiles\\(x86\\)}\\\\nodejs\\\\node.exe\",\"$env:LOCALAPPDATA\\\\nodejs\\\\node.exe\",\"$env:APPDATA\\\\npm\\\\node.exe\",\"$env:LOCALAPPDATA\\\\Programs\\\\nodejs\\\\node.exe\"\\); $paths | ForEach-Object { if \\(Test-Path $_\\) { $_ } }; Get-Command nvm -ErrorAction SilentlyContinue | Select-Object Source; \\(Get-ChildItem \"$env:ProgramFiles\\\\nodejs\" -ErrorAction SilentlyContinue | Measure-Object\\).Count)",
+      "PowerShell($roots = \"C:\\\\Program Files\",\"C:\\\\Program Files \\(x86\\)\",\"$env:LOCALAPPDATA\\\\Programs\",\"$env:LOCALAPPDATA\",\"$env:APPDATA\",\"C:\\\\\"; foreach\\($r in $roots\\){ Get-ChildItem -Path $r -Filter node.exe -Recurse -Depth 3 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName } ; Get-Command volta,fnm,nvm -ErrorAction SilentlyContinue | Select-Object Name,Source)",
+      "PowerShell(Get-Command winget -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Command choco -ErrorAction SilentlyContinue)",
+      "PowerShell(winget install --id OpenJS.NodeJS.LTS -e --accept-source-agreements --accept-package-agreements --silent)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); node -v; npm -v)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location \"C:\\\\Users\\\\Lenovo\\\\OneDrive\\\\Desktop\\\\AI Fitness App\"; npm install)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location \"C:\\\\Users\\\\Lenovo\\\\OneDrive\\\\Desktop\\\\AI Fitness App\"; npm approve-scripts esbuild 2>&1; npm rebuild esbuild 2>&1)",
+      "PowerShell(winget install --id GitHub.cli -e --accept-source-agreements --accept-package-agreements --silent)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); gh --version; gh auth status 2>&1)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location \"C:\\\\Users\\\\Lenovo\\\\OneDrive\\\\Desktop\\\\AI Fitness App\"; git config --global user.name \"tsidadmin\"; git config --global user.email \"admin@tsid.digital\"; git init -b main; git add -A; git status --short)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Set-Location \"C:\\\\Users\\\\Lenovo\\\\OneDrive\\\\Desktop\\\\AI Fitness App\"; git rm -r --cached --quiet .claude; git add -A; git commit -q -m \"Initial commit: PulseCoach AI fitness MVP \\(Vite + React + Tailwind\\)\"; git remote add origin https://github.com/tsidadmin/fitnessapp.git; git branch -M main; echo \"committed\")"
+    ]
+  }
+}
