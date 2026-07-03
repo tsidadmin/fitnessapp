@@ -3,7 +3,7 @@ import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, Tooltip } from "rec
 import {
   Flame, Plus, Trash2, Send, Sparkles, RefreshCw, ChevronRight, Check, Lock,
   Utensils, Dumbbell, MessageCircle, LayoutGrid, RotateCcw, Loader2, AlertTriangle,
-  Moon, Droplets, Zap, Sun, CalendarDays, User, ArrowRight
+  Moon, Droplets, Zap, Sun, CalendarDays, User, ArrowRight, Camera, KeyRound
 } from "lucide-react";
 
 /* ================================================================
@@ -124,15 +124,82 @@ const fmtHeader = () => {
 };
 
 /* ---------------- Claude API ---------------- */
-async function askClaude(messages) {
+const API_KEY_STORE = "pulsecoach_api_key_v1";
+const getApiKey = () => { try { return localStorage.getItem(API_KEY_STORE) || ""; } catch { return ""; } };
+const setApiKey = (k) => { try { k ? localStorage.setItem(API_KEY_STORE, k) : localStorage.removeItem(API_KEY_STORE); } catch { } };
+
+async function claudeFetch(body) {
+  const headers = { "Content-Type": "application/json" };
+  const key = getApiKey();
+  if (key) {
+    headers["x-api-key"] = key;
+    headers["anthropic-version"] = "2023-06-01";
+    headers["anthropic-dangerous-direct-browser-access"] = "true";
+  }
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 1000, messages }),
+    headers,
+    body: JSON.stringify(body),
   });
   if (!res.ok) throw new Error("API " + res.status);
   const data = await res.json();
   return (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n").trim();
+}
+
+async function askClaude(messages) {
+  return claudeFetch({ model: "claude-sonnet-4-6", max_tokens: 1000, messages });
+}
+
+/* Downscale a photo to a JPEG data URL so requests stay small and cheap. */
+function fileToJpegDataUrl(file, maxEdge = 1568) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const scale = Math.min(1, maxEdge / Math.max(img.width, img.height));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(img.width * scale));
+      canvas.height = Math.max(1, Math.round(img.height * scale));
+      canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+      resolve(canvas.toDataURL("image/jpeg", 0.85));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("bad image")); };
+    img.src = url;
+  });
+}
+
+const FOOD_PHOTO_SCHEMA = {
+  type: "object",
+  properties: {
+    is_food: { type: "boolean", description: "true only if the photo shows food or drink" },
+    name: { type: "string", description: "short dish name, max 48 chars; combine multiple items like 'Chicken rice + iced tea'" },
+    kcal: { type: "integer" },
+    protein: { type: "integer" },
+    carbs: { type: "integer" },
+    fat: { type: "integer" },
+  },
+  required: ["is_food", "name", "kcal", "protein", "carbs", "fat"],
+  additionalProperties: false,
+};
+
+async function aiFoodPhoto(dataUrl, meal) {
+  const b64 = dataUrl.split(",")[1];
+  const text = await claudeFetch({
+    model: "claude-opus-4-8",
+    max_tokens: 1000,
+    output_config: { format: { type: "json_schema", schema: FOOD_PHOTO_SCHEMA } },
+    messages: [{
+      role: "user",
+      content: [
+        { type: "image", source: { type: "base64", media_type: "image/jpeg", data: b64 } },
+        { type: "text", text: `Identify the food/drink in this photo and estimate total nutrition for the visible portion size (Singapore context if ambiguous). This is a ${meal} entry. If several items are visible, combine them into one entry. If the photo contains no food or drink, set is_food to false.` },
+      ],
+    }],
+  });
+  const j = extractJSON(text);
+  if (!j.is_food) throw new Error("not_food");
+  return { name: String(j.name || "Photo meal").slice(0, 48), kcal: Math.round(+j.kcal || 0), p: Math.round(+j.protein || 0), c: Math.round(+j.carbs || 0), f: Math.round(+j.fat || 0), est: false };
 }
 function extractJSON(text) {
   const cleaned = text.replace(/```json|```/g, "").trim();
@@ -275,7 +342,7 @@ const MacroBar = ({ name, val, max, zone }) => {
   );
 };
 
-const Btn = ({ children, onClick, kind = "solid", zone = null, disabled, className = "", small }) => {
+const Btn = ({ children, onClick, kind = "solid", zone = null, disabled, className = "", small, ...rest }) => {
   const base = small ? "px-3 py-2 text-sm" : "px-4 py-3";
   const styles = kind === "solid"
     ? { background: zone ? C[zone] : C.iron, color: "#fff" }
@@ -283,7 +350,7 @@ const Btn = ({ children, onClick, kind = "solid", zone = null, disabled, classNa
       ? { background: "transparent", color: C.ink, border: `1px solid ${C.line}` }
       : { background: C.chalk, color: C.ink };
   return (
-    <button onClick={onClick} disabled={disabled}
+    <button {...rest} onClick={onClick} disabled={disabled}
       className={`${base} rounded-xl font-semibold inline-flex items-center justify-center gap-2 disabled:opacity-40 ${className}`}
       style={styles}>
       {children}
@@ -709,7 +776,11 @@ function LogScreen({ state, mutate, notify }) {
   const [food, setFood] = useState("");
   const [meal, setMeal] = useState("lunch");
   const [busy, setBusy] = useState(false);
+  const [photoBusy, setPhotoBusy] = useState(false);
+  const [keyPanel, setKeyPanel] = useState(false);
+  const [keyDraft, setKeyDraft] = useState("");
   const [wo, setWo] = useState({ name: "", mins: "" });
+  const fileRef = useRef(null);
 
   const write = (fn) => mutate(s => {
     const d = s.journal[today] || { foods: [], workouts: [], checkins: {} };
@@ -731,6 +802,36 @@ function LogScreen({ state, mutate, notify }) {
     setFood(""); setBusy(false);
   };
 
+  const openCamera = () => {
+    if (photoBusy) return;
+    if (!getApiKey()) { setKeyPanel(true); return; }
+    fileRef.current?.click();
+  };
+
+  const addPhoto = async (file) => {
+    if (!file || photoBusy) return;
+    setPhotoBusy(true);
+    try {
+      const dataUrl = await fileToJpegDataUrl(file);
+      const item = await aiFoodPhoto(dataUrl, meal);
+      write(d => ({ ...d, foods: [...d.foods, { id: String(Date.now()), meal, ...item }] }));
+      notify(`Logged "${item.name}" — ${item.kcal} kcal.`);
+    } catch (e) {
+      notify(e.message === "not_food"
+        ? "Couldn't spot any food in that photo — try a clearer shot."
+        : "Photo analysis failed — check your AI key in the key panel, then try again.");
+    }
+    setPhotoBusy(false);
+  };
+
+  const saveKey = () => {
+    const k = keyDraft.trim();
+    if (!k) return;
+    setApiKey(k);
+    setKeyDraft(""); setKeyPanel(false);
+    notify("Key saved on this device — tap the camera to analyse a food photo.");
+  };
+
   const addWorkout = () => {
     if (!wo.name.trim()) return;
     write(d => ({ ...d, workouts: [...d.workouts, { id: String(Date.now()), name: wo.name.trim(), mins: +wo.mins || 0 }] }));
@@ -743,7 +844,13 @@ function LogScreen({ state, mutate, notify }) {
   return (
     <div className="grid gap-3 pc-fade">
       <Card>
-        <Eyebrow zone="z3">FUEL LOG · AI-PARSED</Eyebrow>
+        <div className="flex items-center justify-between">
+          <Eyebrow zone="z3">FUEL LOG · AI-PARSED</Eyebrow>
+          <button aria-label="AI key settings" onClick={() => setKeyPanel(p => !p)}
+            className="p-1.5 rounded-lg" style={{ color: getApiKey() ? C.z2 : C.faint }}>
+            <KeyRound size={15} />
+          </button>
+        </div>
         <div className="flex gap-1.5 mt-3">
           {meals.map(m => (
             <button key={m} onClick={() => setMeal(m)} className="px-3 py-1.5 rounded-full text-xs font-semibold capitalize border"
@@ -755,11 +862,40 @@ function LogScreen({ state, mutate, notify }) {
         <div className="flex gap-2 mt-3">
           <Input value={food} onChange={e => setFood(e.target.value)} placeholder="e.g. chicken rice, less rice"
             onKeyDown={e => e.key === "Enter" && addFood()} />
+          <Btn zone="z3" onClick={openCamera} disabled={photoBusy} small className="shrink-0" aria-label="log food from photo">
+            {photoBusy ? <Loader2 size={16} className="animate-spin" /> : <Camera size={16} />}
+          </Btn>
           <Btn zone="z3" onClick={addFood} disabled={busy || !food.trim()} small className="shrink-0">
             {busy ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={16} />} Add
           </Btn>
         </div>
+        <input ref={fileRef} type="file" accept="image/*" capture="environment" className="hidden"
+          onChange={e => { addPhoto(e.target.files?.[0]); e.target.value = ""; }} />
         {busy && <div className="pc-mono text-xs mt-2 pc-pulse" style={{ color: C.z3 }}>COACH IS ESTIMATING MACROS…</div>}
+        {photoBusy && <div className="pc-mono text-xs mt-2 pc-pulse" style={{ color: C.z3 }}>COACH IS READING YOUR PHOTO…</div>}
+        {keyPanel && (
+          <div className="mt-3 rounded-xl p-3" style={{ background: C.chalk, border: `1px solid ${C.line}` }}>
+            <div className="pc-mono flex items-center gap-1.5 text-xs tracking-wider" style={{ color: C.smoke }}>
+              <KeyRound size={12} /> ANTHROPIC API KEY
+            </div>
+            <p className="text-xs mt-1.5" style={{ color: C.smoke }}>
+              Photo recognition calls Claude directly from your browser. Paste an API key from console.anthropic.com —
+              it is stored only on this device, never uploaded anywhere else.
+            </p>
+            <div className="flex gap-2 mt-2">
+              <Input type="password" value={keyDraft} onChange={e => setKeyDraft(e.target.value)} placeholder="sk-ant-..."
+                onKeyDown={e => e.key === "Enter" && saveKey()} />
+              <Btn zone="z3" onClick={saveKey} disabled={!keyDraft.trim()} small className="shrink-0">Save</Btn>
+            </div>
+            <div className="flex gap-3 mt-2">
+              {getApiKey() && (
+                <button onClick={() => { setApiKey(""); notify("Key removed from this device."); }}
+                  className="text-xs underline" style={{ color: C.z5 }}>Remove saved key</button>
+              )}
+              <button onClick={() => setKeyPanel(false)} className="text-xs underline" style={{ color: C.smoke }}>Close</button>
+            </div>
+          </div>
+        )}
         <div className="mt-3 grid gap-3">
           {grouped.map(([m, items]) => items.length > 0 && (
             <div key={m}>
