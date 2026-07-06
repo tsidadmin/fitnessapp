@@ -43,3 +43,6 @@ body {
   to { transform: scaleY(1); }
 }
 .pl-bar { transform-origin: bottom; animation: pl-grow .5s ease both; }
+
+.pl-chat { scrollbar-width: none; }
+.pl-chat::-webkit-scrollbar { display: none; }
