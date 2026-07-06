@@ -1,3 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: #F2F3EF;
+  color: #232B26;
+}
+
+.pl-display { font-family: 'Barlow Condensed', 'Barlow', sans-serif; }
+.pl-mono { font-family: 'IBM Plex Mono', monospace; }
+
+@keyframes pl-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.pl-fade { animation: pl-fade-up .35s ease both; }
+
+@keyframes pl-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .35; }
+}
+.pl-pulse { animation: pl-pulse 1.4s ease-in-out infinite; }
+
+@keyframes pl-scan {
+  0% { top: -4%; }
+  100% { top: 102%; }
+}
+.pl-scanline {
+  position: absolute;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #D9A62E 20%, #F2E4B3 50%, #D9A62E 80%, transparent);
+  box-shadow: 0 0 14px 3px rgba(217, 166, 46, .55);
+  animation: pl-scan 1.6s linear infinite alternate;
+}
+
+@keyframes pl-grow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+.pl-bar { transform-origin: bottom; animation: pl-grow .5s ease both; }
