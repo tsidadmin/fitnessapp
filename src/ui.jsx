@@ -19,7 +19,8 @@ export const ZoneMark = ({ h = 18 }) => (
 );
 
 export const Card = ({ children, className = "", style = {} }) => (
-  <section className={"rounded-3xl border p-5 " + className} style={{ background: C.card, borderColor: C.line, ...style }}>
+  <section className={"border p-5 " + className}
+    style={{ background: C.card, borderColor: C.line, boxShadow: "0 16px 40px rgba(0,2,103,.05)", ...style }}>
     {children}
   </section>
 );
@@ -60,14 +61,16 @@ export const MacroBar = ({ name, val, max, zone }) => {
 
 export const Btn = ({ children, onClick, kind = "solid", zone = null, disabled, className = "", small, ...rest }) => {
   const base = small ? "px-3 py-2 text-sm" : "px-4 py-3";
+  // signature look: hard offset shadow — cyan under the violet primary, navy-tint elsewhere
+  const hard = !zone || zone === "z4" ? `0 3px 0 0 ${C.z3}` : "0 3px 0 0 rgba(2,4,59,.22)";
   const styles = kind === "solid"
-    ? { background: zone ? C[zone] : C.iron, color: "#fff" }
+    ? { background: zone ? C[zone] : C.iron, color: "#fff", boxShadow: disabled ? "none" : hard }
     : kind === "ghost"
-      ? { background: "transparent", color: C.ink, border: `1px solid ${C.line}` }
+      ? { background: "transparent", color: C.ink, border: `1px solid ${C.faint}` }
       : { background: C.chalk, color: C.ink };
   return (
     <button {...rest} onClick={onClick} disabled={disabled}
-      className={`${base} rounded-xl font-semibold inline-flex items-center justify-center gap-2 disabled:opacity-40 ${className}`}
+      className={`${base} font-bold inline-flex items-center justify-center gap-2 disabled:opacity-40 ${className}`}
       style={styles}>
       {children}
     </button>
@@ -94,7 +97,7 @@ export const Field = ({ label, children }) => (
 );
 
 export const Input = (props) => (
-  <input {...props} className={"w-full rounded-xl px-3.5 py-3 text-base " + (props.className || "")}
+  <input {...props} className={"w-full rounded px-3.5 py-3 text-base " + (props.className || "")}
     style={{ background: C.card, border: `1px solid ${C.line}`, color: C.ink }} />
 );
 

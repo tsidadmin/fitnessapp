@@ -56,8 +56,8 @@ export default function Log({ state, mutate, notify }) {
     <div className="grid gap-3 pl-fade">
       <div className="flex gap-1.5 px-1">
         {MEALS.map((m) => (
-          <button key={m} onClick={() => setMeal(m)} className="px-3 py-1.5 rounded-full text-xs font-semibold capitalize border"
-            style={{ background: meal === m ? C.z3 : C.card, color: meal === m ? "#fff" : C.smoke, borderColor: meal === m ? C.z3 : C.line }}>
+          <button key={m} onClick={() => setMeal(m)} className="px-3 py-1.5 text-xs font-bold capitalize border"
+            style={{ background: meal === m ? C.iron : C.card, color: meal === m ? "#fff" : C.smoke, borderColor: meal === m ? C.iron : C.line, boxShadow: meal === m ? `0 2px 0 0 ${C.z3}` : "none" }}>
             {m}
           </button>
         ))}

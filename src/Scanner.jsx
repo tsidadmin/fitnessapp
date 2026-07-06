@@ -14,7 +14,7 @@ const ERROR_COPY = {
 };
 
 const MacroChip = ({ label, grams, color }) => (
-  <div className="flex-1 rounded-xl px-3 py-2 text-center" style={{ background: "rgba(255,255,255,.06)", border: "1px solid rgba(255,255,255,.1)" }}>
+  <div className="flex-1 px-3 py-2 text-center" style={{ background: "rgba(255,255,255,.06)", border: "1px solid rgba(255,255,255,.12)" }}>
     <div className="pl-display text-xl font-bold leading-none" style={{ color }}>{grams}<span className="text-xs font-medium" style={{ color: "rgba(255,255,255,.45)" }}>g</span></div>
     <div className="pl-mono text-[10px] tracking-[.15em] mt-1" style={{ color: "rgba(255,255,255,.45)" }}>{label}</div>
   </div>
@@ -67,7 +67,7 @@ export default function Scanner({ onLogged }) {
   const onDrop = (e) => { e.preventDefault(); setDrag(false); handleFile(e.dataTransfer?.files?.[0]); };
 
   return (
-    <section className="rounded-3xl p-5 pl-fade" style={{ background: C.iron, color: "#fff" }}>
+    <section className="p-5 pl-fade pl-grid-bg" style={{ backgroundColor: C.iron, color: "#fff", boxShadow: "0 16px 40px rgba(0,2,103,.18)" }}>
       <div className="flex items-center justify-between">
         <div className="pl-mono flex items-center gap-2 text-[11px] font-medium tracking-[.18em]" style={{ color: "rgba(255,255,255,.45)" }}>
           <span className="inline-block w-2 h-2 rounded-sm" style={{ background: C.z3 }} />
@@ -82,12 +82,13 @@ export default function Scanner({ onLogged }) {
           onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
           onDragLeave={() => setDrag(false)}
           onDrop={onDrop}
-          className="mt-4 w-full rounded-2xl flex flex-col items-center justify-center gap-2 py-8 transition-colors pl-fade"
+          className="relative mt-4 w-full flex flex-col items-center justify-center gap-2 py-8 transition-colors pl-fade"
           style={{
-            border: `2px dashed ${drag ? C.z3 : "rgba(255,255,255,.25)"}`,
-            background: drag ? "rgba(217,166,46,.12)" : "rgba(255,255,255,.04)",
+            border: `1px dashed ${drag ? C.z3 : "rgba(255,255,255,.3)"}`,
+            background: drag ? "rgba(79,195,247,.12)" : "rgba(255,255,255,.04)",
           }}>
-          <span className="rounded-full p-3.5" style={{ background: C.z3 }}><Camera size={22} color="#fff" /></span>
+          <i className="plc tl" /><i className="plc tr" /><i className="plc bl" /><i className="plc br" />
+          <span className="p-3.5" style={{ background: C.z4, boxShadow: `0 3px 0 0 ${C.z3}` }}><Camera size={22} color="#fff" /></span>
           <span className="font-semibold text-sm">Snap a meal photo</span>
           <span className="pl-mono text-[11px] tracking-wider" style={{ color: "rgba(255,255,255,.4)" }}>AI NAMES THE DISH & COUNTS THE KCAL</span>
         </button>
@@ -95,7 +96,7 @@ export default function Scanner({ onLogged }) {
 
       {phase === "busy" && (
         <div className="mt-4 pl-fade">
-          <div className="relative rounded-2xl overflow-hidden" style={{ maxHeight: 320 }}>
+          <div className="relative overflow-hidden" style={{ maxHeight: 320, border: "1px solid rgba(79,195,247,.35)" }}>
             {preview
               ? <img src={preview} alt="your meal" className="w-full object-cover" style={{ maxHeight: 320 }} />
               : <div className="w-full flex items-center justify-center" style={{ height: 180, background: "rgba(255,255,255,.05)" }}>
@@ -123,7 +124,7 @@ export default function Scanner({ onLogged }) {
             <MacroChip label="FAT" grams={result.f} color={C.z1} />
           </div>
           {result.items.length > 1 && (
-            <div className="mt-4 rounded-xl px-3.5 py-2.5" style={{ background: "rgba(255,255,255,.05)" }}>
+            <div className="mt-4 px-3.5 py-2.5" style={{ background: "rgba(255,255,255,.05)", border: "1px solid rgba(255,255,255,.1)" }}>
               {result.items.map((it, i) => (
                 <div key={i} className="flex justify-between py-1 pl-mono text-xs" style={{ color: "rgba(255,255,255,.65)" }}>
                   <span className="truncate pr-3">{it.name}</span>
@@ -133,10 +134,10 @@ export default function Scanner({ onLogged }) {
             </div>
           )}
           <div className="flex gap-2 mt-5">
-            <button onClick={logIt} className="flex-1 rounded-xl py-3 font-semibold inline-flex items-center justify-center gap-2 text-sm" style={{ background: C.z2, color: "#fff" }}>
+            <button onClick={logIt} className="flex-1 py-3 font-bold inline-flex items-center justify-center gap-2 text-sm" style={{ background: C.z4, color: "#fff", boxShadow: `0 3px 0 0 ${C.z3}` }}>
               <Check size={16} /> Add to today
             </button>
-            <button onClick={reset} className="rounded-xl px-4 py-3 font-semibold inline-flex items-center gap-2 text-sm" style={{ border: "1px solid rgba(255,255,255,.25)", color: "rgba(255,255,255,.8)" }}>
+            <button onClick={reset} className="px-4 py-3 font-bold inline-flex items-center gap-2 text-sm" style={{ border: "1px solid rgba(255,255,255,.3)", color: "rgba(255,255,255,.85)" }}>
               <RotateCcw size={15} /> Retake
             </button>
           </div>
@@ -149,7 +150,7 @@ export default function Scanner({ onLogged }) {
           <div className="rounded-xl px-4 py-3 text-sm" style={{ background: "rgba(196,69,54,.15)", border: `1px solid ${C.z5}`, color: "#F3C3BC" }}>
             {ERROR_COPY[errKey]}
           </div>
-          <button onClick={reset} className="mt-3 rounded-xl px-4 py-2.5 font-semibold inline-flex items-center gap-2 text-sm" style={{ border: "1px solid rgba(255,255,255,.25)" }}>
+          <button onClick={reset} className="mt-3 px-4 py-2.5 font-bold inline-flex items-center gap-2 text-sm" style={{ border: "1px solid rgba(255,255,255,.3)" }}>
             <ImagePlus size={15} /> Try another photo
           </button>
         </div>

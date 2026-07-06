@@ -58,8 +58,8 @@ export default function Onboarding({ onDone, onDemo }) {
         {step === 0 && (
           <div className="pl-fade flex-1 flex flex-col justify-center">
             <div className="pl-mono text-xs tracking-widest mb-3" style={{ color: C.z3 }}>AI FITNESS ADVISOR</div>
-            <h1 className="pl-display font-bold leading-none" style={{ color: "#fff", fontSize: 52 }}>
-              Your coach,<br />on every rep,<br />every meal.
+            <h1 className="pl-display font-extrabold leading-none" style={{ color: "#fff", fontSize: 52 }}>
+              Your coach,<br />on <span className="pl-serif font-semibold" style={{ color: C.z3 }}>every rep</span>,<br /><span className="pl-serif font-semibold" style={{ color: C.z3 }}>every meal</span>.
             </h1>
             <p className="mt-4 text-base leading-relaxed" style={{ color: "#B9C2BB" }}>
               Onboard in a minute. PulseCoach computes your calorie and macro targets, scans
@@ -68,8 +68,8 @@ export default function Onboarding({ onDone, onDemo }) {
             </p>
             <div className="mt-8 grid gap-2.5">
               <Btn onClick={() => setStep(1)} zone="z4" className="w-full">Get started <ArrowRight size={18} /></Btn>
-              <button onClick={onDemo} className="w-full py-3 rounded-xl font-semibold"
-                style={{ color: "#DDE4DE", border: "1px solid #3B463E", background: "transparent" }}>
+              <button onClick={onDemo} className="w-full py-3 font-bold"
+                style={{ color: "#C9D4F2", border: "1px solid rgba(79,195,247,.4)", background: "transparent" }}>
                 Explore with demo data
               </button>
             </div>
@@ -77,7 +77,7 @@ export default function Onboarding({ onDone, onDemo }) {
         )}
 
         {step > 0 && (
-          <div className="pl-fade flex-1 flex flex-col rounded-2xl mt-6 p-5" style={{ background: C.chalk }}>
+          <div className="pl-fade flex-1 flex flex-col mt-6 p-5" style={{ background: C.chalk }}>
             <div className="pl-mono text-xs tracking-widest" style={{ color: C.smoke }}>STEP {step} / 3</div>
             {step === 1 && (
               <div className="mt-3 grid gap-4">

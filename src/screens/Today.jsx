@@ -46,7 +46,7 @@ export default function Today({ state, mutate, gotoTab }) {
           <Eyebrow zone="z3">TODAY · {fmtHeader()}</Eyebrow>
           <h2 className="pl-display text-3xl font-bold mt-1">Hello, {state.profile.name.split(" ")[0]}</h2>
         </div>
-        <div className="flex items-center gap-1.5 rounded-full px-3 py-1.5" style={{ background: C.card, border: `1px solid ${C.line}` }}>
+        <div className="flex items-center gap-1.5 px-3 py-1.5" style={{ background: C.card, border: `1px solid ${C.line}` }}>
           <Flame size={15} style={{ color: C.z4 }} />
           <span className="pl-display font-bold">{streak}</span>
           <span className="pl-mono text-[11px]" style={{ color: C.smoke }}>DAY</span>
@@ -54,8 +54,8 @@ export default function Today({ state, mutate, gotoTab }) {
       </div>
 
       {!state.plan && (
-        <button onClick={() => gotoTab("plan")} className="rounded-3xl p-4 flex items-center justify-between text-left"
-          style={{ background: C.iron, color: "#fff" }}>
+        <button onClick={() => gotoTab("plan")} className="p-4 flex items-center justify-between text-left pl-grid-bg"
+          style={{ backgroundColor: C.iron, color: "#fff", boxShadow: `0 3px 0 0 ${C.z3}` }}>
           <div>
             <div className="pl-mono text-xs tracking-widest" style={{ color: C.z3 }}>NEXT STEP</div>
             <div className="pl-display text-xl font-bold mt-0.5">Generate your AI training plan</div>

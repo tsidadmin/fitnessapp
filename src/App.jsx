@@ -75,9 +75,9 @@ export default function App() {
             return (
               <button key={t.id} onClick={() => setTab(t.id)}
                 className="flex-1 flex flex-col items-center gap-1 pt-3 pb-4"
-                style={{ color: active ? C.z2 : "#8B958D" }}>
+                style={{ color: active ? C.z3 : "#8B93B8" }}>
                 <Icon size={19} />
-                <span className="pl-mono text-[10px] tracking-wider" style={active ? { borderBottom: `2px solid ${C.z2}`, paddingBottom: 2 } : {}}>{t.label}</span>
+                <span className="pl-mono text-[10px] tracking-wider" style={active ? { borderBottom: `2px solid ${C.z3}`, paddingBottom: 2 } : {}}>{t.label}</span>
               </button>
             );
           })}
@@ -85,8 +85,8 @@ export default function App() {
       </nav>
 
       {toast && (
-        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-20 pl-fade flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium shadow-lg"
-          style={{ background: C.iron, color: "#fff", maxWidth: "92vw" }}>
+        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-20 pl-fade flex items-center gap-2 px-4 py-3 text-sm font-medium"
+          style={{ background: C.iron, color: "#fff", maxWidth: "92vw", boxShadow: `0 3px 0 0 ${C.z3}, 0 12px 30px rgba(0,2,103,.3)` }}>
           {toast}
           <button aria-label="dismiss" onClick={() => setToast(null)} style={{ color: C.faint }}><X size={14} /></button>
         </div>
