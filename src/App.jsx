@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { CalendarDays, LayoutGrid, MessageCircle, User, Utensils, X } from "lucide-react";
+import { CalendarDays, HeartPulse, LayoutGrid, MessageCircle, User, Utensils, X } from "lucide-react";
 import { C } from "./theme.js";
 import { ZoneMark } from "./ui.jsx";
 import { computeTargets, loadState, migrateLens, saveState, clearState, seedDemo } from "./lib.js";
@@ -8,12 +8,14 @@ import Today from "./screens/Today.jsx";
 import Log from "./screens/Log.jsx";
 import Plan from "./screens/Plan.jsx";
 import Coach from "./screens/Coach.jsx";
+import Health from "./screens/Health.jsx";
 import HQ from "./screens/HQ.jsx";
 
 const TABS = [
   { id: "today", label: "TODAY", icon: LayoutGrid },
   { id: "log", label: "LOG", icon: Utensils },
   { id: "plan", label: "PLAN", icon: CalendarDays },
+  { id: "health", label: "HEALTH", icon: HeartPulse },
   { id: "coach", label: "COACH", icon: MessageCircle },
   { id: "hq", label: "HQ", icon: User },
 ];
@@ -63,6 +65,7 @@ export default function App() {
         {tab === "today" && <Today state={state} mutate={mutate} gotoTab={setTab} />}
         {tab === "log" && <Log state={state} mutate={mutate} notify={notify} />}
         {tab === "plan" && <Plan state={state} mutate={mutate} notify={notify} />}
+        {tab === "health" && <Health state={state} mutate={mutate} notify={notify} />}
         {tab === "coach" && <Coach state={state} mutate={mutate} />}
         {tab === "hq" && <HQ state={state} onReset={reset} />}
       </main>

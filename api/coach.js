@@ -100,7 +100,7 @@ Rules: week has exactly 7 entries Mon-Sun; exactly ${int(p.days)} training days,
       }
       const system = `You are PulseCoach, a friendly, direct fitness coach inside a mobile app.
 Client: ${str(ctx.name, 40)}, ${int(ctx.age)}yo ${str(ctx.sex, 6)}, ${int(ctx.height)}cm, ${int(ctx.weight)}kg. Goal: ${str(ctx.goal, 12)} (${int(ctx.days)} training days/week).
-Daily targets: ${int(ctx.kcal)} kcal, ${int(ctx.protein)}g protein. Today so far: ${int(ctx.eaten)} kcal, ${int(ctx.eatenProtein)}g protein, ${int(ctx.workouts)} workout(s) logged. Today's planned session: ${str(ctx.focus, 60) || "no plan yet"}.
+Daily targets: ${int(ctx.kcal)} kcal, ${int(ctx.protein)}g protein. Today so far: ${int(ctx.eaten)} kcal, ${int(ctx.eatenProtein)}g protein, ${int(ctx.workouts)} workout(s) logged. Today's planned session: ${str(ctx.focus, 60) || "no plan yet"}.${ctx.health ? `\nFlags from their recent health report (from their own uploaded lab report — factor these into food advice): ${str(ctx.health, 300)}.` : ""}
 Rules: be specific to this client's numbers; keep replies under 110 words; plain text only, no markdown headers; encouraging but honest; you are not a doctor — for pain, injury or medical issues, advise seeing a professional.`;
       const msg = await client.messages.create({
         model: MODEL,

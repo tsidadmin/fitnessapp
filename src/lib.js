@@ -102,6 +102,36 @@ export async function apiChat(context, messages) {
   const { reply } = await post("/api/coach", { kind: "chat", context, messages });
   return reply || "…";
 }
+export async function apiAnalyzeReport(base64, mediaType) {
+  return post("/api/analyze-report", { file: base64, media_type: mediaType });
+}
+
+/* Read a report file: images are downscaled to JPEG; PDFs pass through (≤3MB). */
+export async function reportFileToBase64(file) {
+  if (file.type === "application/pdf") {
+    if (file.size > 3 * 1024 * 1024) throw new Error("pdf_too_large");
+    const dataUrl = await new Promise((resolve, reject) => {
+      const r = new FileReader();
+      r.onload = () => resolve(r.result);
+      r.onerror = () => reject(new Error("bad_file"));
+      r.readAsDataURL(file);
+    });
+    return { base64: dataUrl.split(",")[1], mediaType: "application/pdf" };
+  }
+  const dataUrl = await fileToJpeg(file, 2000);
+  return { base64: dataUrl.split(",")[1], mediaType: "image/jpeg" };
+}
+
+/* Compact "high LDL; borderline HbA1c" string for the coach chat context. */
+export function healthFlags(health) {
+  if (!health?.markers?.length) return "";
+  return health.markers
+    .filter((m) => m.status !== "normal")
+    .slice(0, 6)
+    .map((m) => `${m.status} ${m.name} (${m.value})`)
+    .join("; ")
+    .slice(0, 300);
+}
 
 /* Downscale a photo to a JPEG data URL so uploads stay small and cheap. */
 export function fileToJpeg(file, maxEdge = 1568) {

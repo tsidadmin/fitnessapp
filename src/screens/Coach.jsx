@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { MessageCircle, Send } from "lucide-react";
 import { C } from "../theme.js";
 import { Btn, Card, Input } from "../ui.jsx";
-import { apiChat, dayISO, todayName } from "../lib.js";
+import { apiChat, dayISO, healthFlags, todayName } from "../lib.js";
 
 export default function Coach({ state, mutate }) {
   const [input, setInput] = useState("");
@@ -21,6 +21,7 @@ export default function Coach({ state, mutate }) {
       eatenProtein: d.foods.reduce((s, f) => s + f.p, 0),
       workouts: d.workouts.length,
       focus: state.plan?.week.find((w) => w.day === todayName())?.focus || "",
+      health: healthFlags(state.health),
     };
   };
 
