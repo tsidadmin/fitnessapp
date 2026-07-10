@@ -1,0 +1,62 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1815 >>
+stream
+BT /F1 10 Tf 40 800 Td 13.5 TL
+(RIVERSIDE CLINICAL LABORATORY) Tj T*
+(30 Merchant Rd, #02-15, Singapore 058282   Tel 6555 0707) Tj T*
+(======================================================================) Tj T*
+(Patient: Kenneth Chua Boon Teck       MRN: RS-445612) Tj T*
+(Age/Sex: 46 / Male                    Collected: 22 Jun 2026) Tj T*
+(Referring: Dr Michelle Ang            Fasting: Yes \(12h\)) Tj T*
+(======================================================================) Tj T*
+() Tj T*
+(LIVER FUNCTION) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(ALT \(SGPT\)                    78 U/L        10 - 40         HIGH) Tj T*
+(AST \(SGOT\)                    55 U/L        10 - 40         HIGH) Tj T*
+(GGT                           96 U/L        10 - 60         HIGH) Tj T*
+(Bilirubin \(Total\)             14 umol/L     5 - 21          ) Tj T*
+() Tj T*
+(METABOLIC) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Triglycerides                 2.8 mmol/L    < 1.7           HIGH) Tj T*
+(Fasting Glucose               6.1 mmol/L    3.9 - 6.0       HIGH) Tj T*
+(HbA1c                         5.9 %         < 5.7           HIGH) Tj T*
+(BMI \(on file\)                 29.4 kg/m2    18.5 - 24.9     HIGH) Tj T*
+() Tj T*
+(Comment: Transaminitis with metabolic features, suggestive of fatty liver. Weight loss and reduced sugar/alcohol advised.) Tj T*
+() Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Electronically verified. Fictional sample for app testing only.) Tj T*
+(Not a real medical document. Reference ranges vary by laboratory.) Tj T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000002108 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2176
+%%EOF

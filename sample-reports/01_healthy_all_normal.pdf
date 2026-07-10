@@ -1,0 +1,67 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1986 >>
+stream
+BT /F1 10 Tf 40 800 Td 13.5 TL
+(GREENVIEW HEALTH SCREENING CENTRE) Tj T*
+(12 Wellness Ave, #03-04, Singapore 049315   Tel 6555 0101) Tj T*
+(======================================================================) Tj T*
+(Patient: Nur Aisyah Rahman            MRN: GV-100241) Tj T*
+(Age/Sex: 27 / Female                  Collected: 02 Jul 2026) Tj T*
+(Referring: Dr Lim Wei Ming            Fasting: Yes \(10h\)) Tj T*
+(======================================================================) Tj T*
+() Tj T*
+(LIPID PANEL) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Total Cholesterol             4.4 mmol/L    < 5.2           ) Tj T*
+(LDL Cholesterol               2.5 mmol/L    < 3.4           ) Tj T*
+(HDL Cholesterol               1.7 mmol/L    > 1.0           ) Tj T*
+(Triglycerides                 0.9 mmol/L    < 1.7           ) Tj T*
+() Tj T*
+(METABOLIC) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Fasting Glucose               4.9 mmol/L    3.9 - 6.0       ) Tj T*
+(HbA1c                         5.1 %         < 5.7           ) Tj T*
+() Tj T*
+(OTHERS) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Vitamin D \(25-OH\)             42 ng/mL      30 - 100        ) Tj T*
+(Haemoglobin                   13.6 g/dL     12.0 - 15.5     ) Tj T*
+(Uric Acid                     290 umol/L    150 - 350       ) Tj T*
+() Tj T*
+(Comment: All screened values within normal limits. Routine review in 12 months.) Tj T*
+() Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Electronically verified. Fictional sample for app testing only.) Tj T*
+(Not a real medical document. Reference ranges vary by laboratory.) Tj T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000002279 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2347
+%%EOF

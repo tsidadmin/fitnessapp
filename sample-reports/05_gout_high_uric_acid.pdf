@@ -1,0 +1,66 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1939 >>
+stream
+BT /F1 10 Tf 40 800 Td 13.5 TL
+(EASTPOINT PATHOLOGY) Tj T*
+(3 Simei St 6, Singapore 528833   Tel 6555 0505) Tj T*
+(======================================================================) Tj T*
+(Patient: Marcus Lee Zhi Wei           MRN: EP-221904) Tj T*
+(Age/Sex: 52 / Male                    Collected: 20 Jun 2026) Tj T*
+(Referring: Dr Faizal Hamid            Fasting: Yes \(10h\)) Tj T*
+(======================================================================) Tj T*
+() Tj T*
+(METABOLIC / RENAL) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Uric Acid                     512 umol/L    200 - 430       HIGH) Tj T*
+(Creatinine                    98 umol/L     60 - 110        ) Tj T*
+(eGFR                          88 mL/min     > 90            LOW) Tj T*
+() Tj T*
+(LIPID PANEL) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Total Cholesterol             5.8 mmol/L    < 5.2           HIGH) Tj T*
+(Triglycerides                 3.1 mmol/L    < 1.7           HIGH) Tj T*
+(HDL Cholesterol               0.95 mmol/L   > 1.0           LOW) Tj T*
+() Tj T*
+(GLYCAEMIC) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Fasting Glucose               5.8 mmol/L    3.9 - 6.0       ) Tj T*
+(HbA1c                         5.6 %         < 5.7           ) Tj T*
+() Tj T*
+(Comment: Hyperuricaemia with raised triglycerides. Purine-aware diet and alcohol reduction advised.) Tj T*
+() Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Electronically verified. Fictional sample for app testing only.) Tj T*
+(Not a real medical document. Reference ranges vary by laboratory.) Tj T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000002232 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2300
+%%EOF

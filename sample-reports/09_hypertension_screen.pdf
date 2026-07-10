@@ -1,0 +1,65 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1908 >>
+stream
+BT /F1 10 Tf 40 800 Td 13.5 TL
+(PARKWAY COMMUNITY HEALTH LAB) Tj T*
+(6 Napier Rd, #01-02, Singapore 258499   Tel 6555 0909) Tj T*
+(======================================================================) Tj T*
+(Patient: Ravi Kumar                   MRN: PW-512668) Tj T*
+(Age/Sex: 55 / Male                    Collected: 15 Jun 2026) Tj T*
+(Referring: Dr Cheryl Ng               Fasting: Yes \(10h\)) Tj T*
+(======================================================================) Tj T*
+() Tj T*
+(VITALS \(CLINIC\)) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Blood Pressure                152/96 mmHg   < 130/80        HIGH) Tj T*
+(Resting Heart Rate            82 bpm        60 - 100        ) Tj T*
+() Tj T*
+(ELECTROLYTES) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Sodium                        146 mmol/L    135 - 145       HIGH) Tj T*
+(Potassium                     3.9 mmol/L    3.5 - 5.1       ) Tj T*
+() Tj T*
+(LIPID PANEL) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Total Cholesterol             5.6 mmol/L    < 5.2           HIGH) Tj T*
+(LDL Cholesterol               3.6 mmol/L    < 3.4           HIGH) Tj T*
+(Triglycerides                 1.8 mmol/L    < 1.7           HIGH) Tj T*
+() Tj T*
+(Comment: Stage-2 hypertension with borderline lipids. Sodium reduction \(DASH-style diet\) advised; clinical review.) Tj T*
+() Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Electronically verified. Fictional sample for app testing only.) Tj T*
+(Not a real medical document. Reference ranges vary by laboratory.) Tj T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000002201 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2269
+%%EOF

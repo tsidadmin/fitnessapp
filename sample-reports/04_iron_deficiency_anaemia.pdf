@@ -1,0 +1,61 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1712 >>
+stream
+BT /F1 10 Tf 40 800 Td 13.5 TL
+(HARBOURFRONT MEDICAL LABS) Tj T*
+(1 Maritime Sq, #09-10, Singapore 099253   Tel 6555 0404) Tj T*
+(======================================================================) Tj T*
+(Patient: Chloe Tan Hui Ling           MRN: HF-560087) Tj T*
+(Age/Sex: 31 / Female                  Collected: 01 Jul 2026) Tj T*
+(Referring: Dr Rachel Koh              Fasting: No) Tj T*
+(======================================================================) Tj T*
+() Tj T*
+(FULL BLOOD COUNT) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Haemoglobin                   10.2 g/dL     12.0 - 15.5     LOW) Tj T*
+(MCV                           72 fL         80 - 100        LOW) Tj T*
+(MCH                           23 pg         27 - 33         LOW) Tj T*
+(Red Cell Count                4.1 x10^12/L  3.8 - 5.2       ) Tj T*
+() Tj T*
+(IRON STUDIES) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Ferritin                      8 ug/L        15 - 200        LOW) Tj T*
+(Serum Iron                    6 umol/L      10 - 30         LOW) Tj T*
+(Transferrin Sat.              9 %           20 - 50         LOW) Tj T*
+() Tj T*
+(Comment: Microcytic hypochromic picture consistent with iron deficiency. Dietary iron and clinical review advised.) Tj T*
+() Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Electronically verified. Fictional sample for app testing only.) Tj T*
+(Not a real medical document. Reference ranges vary by laboratory.) Tj T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000002005 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2073
+%%EOF

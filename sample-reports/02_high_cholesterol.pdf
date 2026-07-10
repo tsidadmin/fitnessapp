@@ -1,0 +1,61 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1697 >>
+stream
+BT /F1 10 Tf 40 800 Td 13.5 TL
+(CITYLAB DIAGNOSTICS) Tj T*
+(88 Raffles Quay, #12-01, Singapore 048583   Tel 6555 0202) Tj T*
+(======================================================================) Tj T*
+(Patient: Daniel Ong Kok Heng          MRN: CL-778120) Tj T*
+(Age/Sex: 48 / Male                    Collected: 28 Jun 2026) Tj T*
+(Referring: Dr Sarah Tan               Fasting: Yes \(12h\)) Tj T*
+(======================================================================) Tj T*
+() Tj T*
+(LIPID PANEL) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Total Cholesterol             6.7 mmol/L    < 5.2           HIGH) Tj T*
+(LDL Cholesterol               4.6 mmol/L    < 3.4           HIGH) Tj T*
+(HDL Cholesterol               0.9 mmol/L    > 1.0           LOW) Tj T*
+(Triglycerides                 2.1 mmol/L    < 1.7           HIGH) Tj T*
+(Chol/HDL Ratio                7.4           < 4.5           HIGH) Tj T*
+() Tj T*
+(METABOLIC) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Fasting Glucose               5.4 mmol/L    3.9 - 6.0       ) Tj T*
+(HbA1c                         5.6 %         < 5.7           ) Tj T*
+() Tj T*
+(Comment: Dyslipidaemia. Lifestyle and dietary modification advised; clinical correlation recommended.) Tj T*
+() Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Electronically verified. Fictional sample for app testing only.) Tj T*
+(Not a real medical document. Reference ranges vary by laboratory.) Tj T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001990 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2058
+%%EOF

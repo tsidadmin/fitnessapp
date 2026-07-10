@@ -1,0 +1,61 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1706 >>
+stream
+BT /F1 10 Tf 40 800 Td 13.5 TL
+(METROHEALTH LABORATORY) Tj T*
+(5 Science Park Dr, Singapore 118253   Tel 6555 0303) Tj T*
+(======================================================================) Tj T*
+(Patient: Priya Nair                   MRN: MH-334519) Tj T*
+(Age/Sex: 44 / Female                  Collected: 25 Jun 2026) Tj T*
+(Referring: Dr Arjun Menon             Fasting: Yes \(10h\)) Tj T*
+(======================================================================) Tj T*
+() Tj T*
+(GLYCAEMIC CONTROL) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Fasting Glucose               6.4 mmol/L    3.9 - 6.0       HIGH) Tj T*
+(HbA1c                         6.1 %         < 5.7           HIGH) Tj T*
+(Fasting Insulin               18 uIU/mL     2.6 - 24.9      ) Tj T*
+() Tj T*
+(LIPID PANEL) Tj T*
+(Test                          Result        Ref. Range      Flag) Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Total Cholesterol             5.5 mmol/L    < 5.2           HIGH) Tj T*
+(LDL Cholesterol               3.5 mmol/L    < 3.4           HIGH) Tj T*
+(HDL Cholesterol               1.1 mmol/L    > 1.0           ) Tj T*
+(Triglycerides                 1.9 mmol/L    < 1.7           HIGH) Tj T*
+() Tj T*
+(Comment: HbA1c in pre-diabetic range. Weight management and reduced refined-carbohydrate intake advised.) Tj T*
+() Tj T*
+(----------------------------------------------------------------------) Tj T*
+(Electronically verified. Fictional sample for app testing only.) Tj T*
+(Not a real medical document. Reference ranges vary by laboratory.) Tj T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001999 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2067
+%%EOF
