@@ -87,8 +87,8 @@ async function post(url, payload) {
   return data;
 }
 
-export async function apiAnalyzePhoto(dataUrl) {
-  return post("/api/analyze-food", { image: dataUrl.split(",")[1], media_type: "image/jpeg" });
+export async function apiAnalyzePhoto(dataUrl, health = "") {
+  return post("/api/analyze-food", { image: dataUrl.split(",")[1], media_type: "image/jpeg", health });
 }
 export async function apiPlan(profile, targets) {
   const plan = await post("/api/coach", { kind: "plan", profile, targets });

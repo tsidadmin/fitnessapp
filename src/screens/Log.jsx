@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Dumbbell, Loader2, Plus, Sparkles, Trash2 } from "lucide-react";
 import { C } from "../theme.js";
 import { Btn, Card, Eyebrow, Input } from "../ui.jsx";
-import { apiFood, dayISO } from "../lib.js";
+import { apiFood, dayISO, healthFlags } from "../lib.js";
 import Scanner from "../Scanner.jsx";
 
 const MEALS = ["breakfast", "lunch", "dinner", "snack"];
@@ -63,7 +63,7 @@ export default function Log({ state, mutate, notify }) {
         ))}
       </div>
 
-      <Scanner onLogged={addScan} />
+      <Scanner onLogged={addScan} health={healthFlags(state.health)} />
 
       <Card>
         <Eyebrow zone="z3">OR TYPE IT · AI-PARSED</Eyebrow>

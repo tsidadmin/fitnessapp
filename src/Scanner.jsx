@@ -1,8 +1,15 @@
 import React, { useRef, useState } from "react";
-import { Camera, Check, Flame, ImagePlus, Loader2, RotateCcw } from "lucide-react";
+import { Camera, Check, Flame, HeartPulse, ImagePlus, Loader2, RotateCcw } from "lucide-react";
 import { C } from "./theme.js";
 import { useCountUp } from "./ui.jsx";
 import { apiAnalyzePhoto, fileToJpeg } from "./lib.js";
+
+const AMBER = "#F59E0B";
+const VERDICT = {
+  good: { color: C.z2, label: "GOOD FOR YOU", tint: "rgba(16,185,129,.16)" },
+  moderate: { color: AMBER, label: "IN MODERATION", tint: "rgba(245,158,11,.16)" },
+  limit: { color: C.z5, label: "GO EASY", tint: "rgba(229,72,77,.16)" },
+};
 
 const ERROR_COPY = {
   server_not_configured: "The scanner isn't wired to an AI key yet. Add ANTHROPIC_API_KEY in Vercel and redeploy.",
@@ -30,7 +37,7 @@ function KcalBig({ value }) {
   );
 }
 
-export default function Scanner({ onLogged }) {
+export default function Scanner({ onLogged, health = "" }) {
   const [phase, setPhase] = useState("idle"); // idle | busy | result | error
   const [preview, setPreview] = useState(null);
   const [result, setResult] = useState(null);
@@ -44,7 +51,7 @@ export default function Scanner({ onLogged }) {
     try {
       const dataUrl = await fileToJpeg(file);
       setPreview(dataUrl);
-      const data = await apiAnalyzePhoto(dataUrl);
+      const data = await apiAnalyzePhoto(dataUrl, health);
       if (!data.is_food) { setErrKey("not_food"); setPhase("error"); return; }
       setResult({
         dish: String(data.dish || "Mystery plate").slice(0, 48),
@@ -54,6 +61,9 @@ export default function Scanner({ onLogged }) {
         f: Math.max(0, Math.round(+data.fat || 0)),
         items: Array.isArray(data.items) ? data.items.slice(0, 6) : [],
         note: String(data.note || ""),
+        verdict: VERDICT[data.verdict] ? data.verdict : null,
+        verdictReason: String(data.verdict_reason || ""),
+        swap: String(data.better_swap || ""),
       });
       setPhase("result");
     } catch (e) {
@@ -133,6 +143,21 @@ export default function Scanner({ onLogged }) {
               ))}
             </div>
           )}
+
+          {result.verdict && (
+            <div className="mt-4 px-3.5 py-3" style={{ background: VERDICT[result.verdict].tint, borderLeft: `3px solid ${VERDICT[result.verdict].color}` }}>
+              <div className="pl-mono flex items-center gap-1.5 text-[11px] font-semibold tracking-[.15em]" style={{ color: VERDICT[result.verdict].color }}>
+                <HeartPulse size={12} /> {VERDICT[result.verdict].label} · VS YOUR REPORT
+              </div>
+              {result.verdictReason && <p className="text-sm mt-1.5 leading-relaxed" style={{ color: "rgba(255,255,255,.85)" }}>{result.verdictReason}</p>}
+              {result.swap && (
+                <p className="text-sm mt-1.5 leading-relaxed" style={{ color: "rgba(255,255,255,.7)" }}>
+                  <span className="pl-mono text-[11px] tracking-wider" style={{ color: C.z3 }}>TRY&nbsp;→&nbsp;</span>{result.swap}
+                </p>
+              )}
+            </div>
+          )}
+
           <div className="flex gap-2 mt-5">
             <button onClick={logIt} className="flex-1 py-3 font-bold inline-flex items-center justify-center gap-2 text-sm" style={{ background: C.z4, color: "#fff", boxShadow: `0 3px 0 0 ${C.z3}` }}>
               <Check size={16} /> Add to today
